@@ -156,6 +156,7 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
   animation: fadeInUp 0.7s;
+  margin: 16px;
 }
 .skill-card:hover {
   transform: translateY(-8px) scale(1.07);
@@ -215,6 +216,7 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   align-items: flex-start;
   justify-content: flex-start;
   min-height: 260px;
+  margin: 16px;
 }
 .project-card:hover {
   transform: scale(1.05);
@@ -249,8 +251,7 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin: 16px;
 }
 .contact-card h2 {
   margin-top: 0;
@@ -406,8 +407,7 @@ html {
   font-size: 1.15rem;
   line-height: 1.7;
   transition: box-shadow 0.2s;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin: 16px;
 }
 .about-card:hover {
   box-shadow: 0 12px 48px 0 rgba(102, 126, 234, 0.18);

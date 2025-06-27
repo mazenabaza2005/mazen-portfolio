@@ -1,6 +1,6 @@
 import React from "react";
 import { ParallaxProvider, Parallax } from "react-scroll-parallax";
-import { FaReact, FaPython, FaDatabase, FaHtml5, FaCss3Alt, FaJsSquare, FaGithub, FaUser, FaProjectDiagram, FaEnvelope, FaTools, FaPhone, FaLinkedin, FaPhotoVideo, FaLayerGroup, FaStar } from "react-icons/fa";
+import { FaReact, FaPython, FaDatabase, FaHtml5, FaCss3Alt, FaJsSquare, FaGithub, FaUser, FaProjectDiagram, FaEnvelope, FaTools, FaPhone, FaLinkedin, FaPhotoVideo, FaLayerGroup, FaStar, FaBootstrap } from "react-icons/fa";
 import codingAnimation from "./coding-lottie.json"; // You will need to add a Lottie JSON file for animation
 import "./App.css";
 import Lottie from 'react-lottie-player';
@@ -12,6 +12,7 @@ const skills = [
   { icon: <FaHtml5 />, name: "HTML5" },
   { icon: <FaCss3Alt />, name: "CSS3" },
   { icon: <FaJsSquare />, name: "JavaScript" },
+  { icon: <FaBootstrap />, name: "Bootstrap" },
 ];
 
 const projects = [
