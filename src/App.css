@@ -249,6 +249,8 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 .contact-card h2 {
   margin-top: 0;
