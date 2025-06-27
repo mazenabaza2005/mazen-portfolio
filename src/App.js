@@ -1,7 +1,6 @@
 import React from "react";
 import { ParallaxProvider, Parallax } from "react-scroll-parallax";
-import { FaReact, FaPython, FaDatabase, FaHtml5, FaCss3Alt, FaJsSquare, FaGithub, FaUser, FaProjectDiagram, FaEnvelope, FaTools, FaPhone, FaLinkedin } from "react-icons/fa";
-import { Player } from "lottie-react";
+import { FaReact, FaPython, FaDatabase, FaHtml5, FaCss3Alt, FaJsSquare, FaGithub, FaUser, FaProjectDiagram, FaEnvelope, FaTools, FaPhone, FaLinkedin, FaPhotoVideo, FaLayerGroup, FaStar } from "react-icons/fa";
 import codingAnimation from "./coding-lottie.json"; // You will need to add a Lottie JSON file for animation
 import "./App.css";
 import Lottie from 'react-lottie-player';
@@ -51,6 +50,7 @@ function App() {
         <a href="#about" title="About"><FaUser /></a>
         <a href="#skills" title="Skills"><FaTools /></a>
         <a href="#projects" title="Projects"><FaProjectDiagram /></a>
+        <a href="#additional-skills" title="Additional Skills"><FaLayerGroup /></a>
         <a href="#contact" title="Contact"><FaEnvelope /></a>
       </div>
       <div className="main-content">
@@ -85,7 +85,11 @@ function App() {
         {/* About Section */}
         <section id="about" className="section about-section">
           <div className="about-card">
-            <h2><span className="about-emoji">👋</span>Hey, I'm <span className="about-highlight">Mazen</span></h2>
+            <div className="section-header">
+              <span className="section-header-icon"><FaUser /></span>
+              <h2>About Me</h2>
+            </div>
+            <h2 style={{display: 'none'}}><span className="about-emoji">👋</span>Hey, I'm <span className="about-highlight">Mazen</span></h2>
             <p>
               <span className="about-emoji">💻</span>
               I'm a <span className="about-highlight">Full Stack Developer</span> who loves turning ideas into interactive, beautiful web experiences. Whether it's a sleek frontend in React or a robust backend in Django, I enjoy every step of the process.
@@ -104,10 +108,14 @@ function App() {
             </p>
           </div>
         </section>
-
+        {/* SVG Wave Divider */}
+        <div className="section-divider"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,0 C480,100 960,0 1440,100 L1440,100 L0,100 Z" fill="#f8f7fa" /></svg></div>
         {/* Skills Section */}
         <section id="skills" className="section skills-section">
-          <h2>Skills</h2>
+          <div className="section-header">
+            <span className="section-header-icon"><FaTools /></span>
+            <h2>Skills</h2>
+          </div>
           <Parallax y={[-30, 30]}>
             <div className="skills-grid">
               {skills.map((skill, i) => (
@@ -121,12 +129,14 @@ function App() {
             </div>
           </Parallax>
         </section>
-
-        {/* Projects Section Anchor Fix */}
-        <div id="projects" style={{position: 'relative', top: '-80px', height: 0}} />
+        {/* SVG Wave Divider */}
+        <div className="section-divider"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,0 C480,100 960,0 1440,100 L1440,100 L0,100 Z" fill="#f5f5f5" /></svg></div>
         {/* Projects Section */}
-        <section className="section projects-section">
-          <h2>Projects</h2>
+        <section id="projects" className="section projects-section">
+          <div className="section-header">
+            <span className="section-header-icon"><FaProjectDiagram /></span>
+            <h2>Projects</h2>
+          </div>
           <Parallax y={[30, -30]}>
             <div className="projects-grid">
               {projects.map((p, i) => (
@@ -145,11 +155,49 @@ function App() {
             </div>
           </Parallax>
         </section>
-
+        {/* SVG Wave Divider */}
+        <div className="section-divider"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,0 C480,100 960,0 1440,100 L1440,100 L0,100 Z" fill="#f8f7fa" /></svg></div>
+        {/* Additional Skills Section */}
+        <section id="additional-skills" className="section skills-section">
+          <div className="section-header">
+            <span className="section-header-icon"><FaStar /></span>
+            <h2>Additional Skills</h2>
+          </div>
+          <Parallax y={[-20, 20]}>
+            <div className="skills-grid">
+              <div className="skill-card">
+                <div className="skill-icon"><FaDatabase /></div>
+                <div className="skill-name">PHP</div>
+              </div>
+              <div className="skill-card">
+                <div className="skill-icon"><FaPython /></div>
+                <div className="skill-name">Data Science<br/>(NumPy, Pandas)</div>
+              </div>
+              <div className="skill-card">
+                <div className="skill-icon"><FaDatabase /></div>
+                <div className="skill-name">Anaconda</div>
+              </div>
+              <div className="skill-card">
+                <div className="skill-icon"><FaTools /></div>
+                <div className="skill-name">Figma</div>
+              </div>
+              <div className="skill-card">
+                <div className="skill-icon"><FaPhotoVideo /></div>
+                <div className="skill-name">Media Editing</div>
+              </div>
+            </div>
+          </Parallax>
+        </section>
+        {/* SVG Wave Divider */}
+        <div className="section-divider"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,0 C480,100 960,0 1440,100 L1440,100 L0,100 Z" fill="#fff" /></svg></div>
         {/* Contact Section */}
         <section id="contact" className="section contact-section">
-          <div className="contact-card">
+          <div className="section-header">
+            <span className="section-header-icon"><FaEnvelope /></span>
             <h2>Contact</h2>
+          </div>
+          <div className="contact-card">
+            <h2 style={{display: 'none'}}>Contact</h2>
             <div>I'm always open to new opportunities, collaborations, or just a friendly chat. Reach out below!</div>
             <div className="contact-links">
               <a href="mailto:abazamazen55@gmail.com" className="contact-icon" title="Email">
