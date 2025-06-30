@@ -1,10 +1,12 @@
-import React from "react";
-import { ParallaxProvider, Parallax } from "react-scroll-parallax";
-import { FaReact, FaPython, FaDatabase, FaHtml5, FaCss3Alt, FaJsSquare, FaGithub, FaUser, FaProjectDiagram, FaEnvelope, FaTools, FaPhone, FaLinkedin, FaPhotoVideo, FaLayerGroup, FaStar, FaBootstrap } from "react-icons/fa";
-import codingAnimation from "./coding-lottie.json"; // You will need to add a Lottie JSON file for animation
+import React, { useEffect, useState, useCallback } from "react";
+import {
+  FaReact, FaPython, FaDatabase, FaHtml5, FaCss3Alt, FaJsSquare, FaGithub,
+  FaUser, FaProjectDiagram, FaEnvelope, FaTools, FaPhone, FaLinkedin,
+  FaPhotoVideo, FaLayerGroup, FaStar, FaBootstrap
+} from "react-icons/fa";
 import "./App.css";
-import Lottie from 'react-lottie-player';
 
+// Data arrays
 const skills = [
   { icon: <FaReact />, name: "React" },
   { icon: <FaPython />, name: "Django" },
@@ -34,7 +36,7 @@ const projects = [
   {
     title: "AI-Chat",
     desc: "An intelligent chat application leveraging AI for natural language understanding and smart responses. Showcases real-time messaging, user-friendly design, and integration with modern AI APIs.",
-    link: "https://https://github.com/mazenabaza2005/AI-Chat",
+    link: "https://github.com/mazenabaza2005/AI-Chat",
   },
   {
     title: "Weather Dashboard",
@@ -43,9 +45,69 @@ const projects = [
   },
 ];
 
-function App() {
+const additionalSkills = [
+  { icon: <FaDatabase />, name: "PHP" },
+  { icon: <FaPython />, name: "Data Science (NumPy, Pandas)" },
+  { icon: <FaDatabase />, name: "Anaconda" },
+  { icon: <FaTools />, name: "Figma" },
+  { icon: <FaPhotoVideo />, name: "Media Editing" },
+];
+
+// Optimized ParallaxBox component
+function ParallaxBox({ speed = 0.5, style = {}, children }) {
+  const [offsetY, setOffsetY] = useState(0);
+
+  const handleScroll = useCallback(() => {
+    requestAnimationFrame(() => {
+      setOffsetY(window.pageYOffset);
+    });
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
   return (
-    <ParallaxProvider>
+    <div
+      style={{
+        transform: `translateY(${offsetY * speed}px)`,
+        transition: "transform 0.1s ease-out",
+        willChange: "transform",
+        pointerEvents: "none",
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+// Side parallax circle component
+function SideParallaxCircle({ color, speed, position }) {
+  return (
+    <ParallaxBox
+      speed={speed}
+      style={{
+        position: "absolute",
+        top: "20%",
+        left: position === "left" ? "10%" : "85%",
+        width: 200,
+        height: 200,
+        borderRadius: "50%",
+        background: color,
+        filter: "blur(40px)",
+        opacity: 0.35,
+        zIndex: 10,
+        pointerEvents: "none",
+      }}
+    />
+  );
+}
+
+export default function App() {
+  return (
+    <>
       <div className="animated-bg" />
       <div className="floating-nav">
         <a href="#about" title="About"><FaUser /></a>
@@ -56,145 +118,130 @@ function App() {
       </div>
       <div className="main-content">
         {/* Hero Section */}
-        <Parallax className="hero" y={[-80, 80]} tagOuter="section">
-          <Parallax y={[-120, 120]} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
+        <section className="hero" style={{ position: "relative", overflow: "hidden" }}>
+          <ParallaxBox speed={-0.12} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
             <div className="hero-bg" />
-          </Parallax>
-          <Parallax y={[-60, 60]} style={{ position: 'absolute', top: '20%', left: '10%', zIndex: 1 }}>
+          </ParallaxBox>
+          <ParallaxBox speed={0.18} style={{ position: 'absolute', top: '20%', left: '10%', zIndex: 1 }}>
             <div className="parallax-shape parallax-shape-1" />
-          </Parallax>
-          <Parallax y={[60, -60]} style={{ position: 'absolute', bottom: '15%', right: '12%', zIndex: 1 }}>
+          </ParallaxBox>
+          <ParallaxBox speed={-0.18} style={{ position: 'absolute', bottom: '15%', right: '12%', zIndex: 1 }}>
             <div className="parallax-shape parallax-shape-2" />
-          </Parallax>
+          </ParallaxBox>
           <div className="hero-content">
             <h1>Mazen Salah Abaza</h1>
             <p>Full Stack React & Django Developer</p>
             <a href="#projects" className="cta-btn">View Projects</a>
-            <Parallax y={[-40, 40]}>
-              <div className="hero-lottie">
-                <Lottie
-                  loop
-                  play
-                  animationData={codingAnimation}
-                  style={{ width: 180, height: 180 }}
-                />
-              </div>
-            </Parallax>
           </div>
-        </Parallax>
+        </section>
 
         {/* About Section */}
-        <section id="about" className="section about-section">
-          <div className="about-card">
+        <section id="about" className="section about-section" style={{ position: "relative", overflow: "hidden" }}>
+          <SideParallaxCircle color="#764ba2" speed={0.08} position="left" />
+          <SideParallaxCircle color="#ff6a00" speed={-0.12} position="right" />
+          <div className="about-card" style={{ position: "relative", zIndex: 1 }}>
             <div className="section-header">
               <span className="section-header-icon"><FaUser /></span>
               <h2>About Me</h2>
             </div>
-            
             <p>
-      <span className="about-emoji">👋</span>Hey! I'm <span className="about-highlight">Mazen</span>, a curious and self-driven developer who loves building things for the web.
-    </p>
-    <p>
-      <span className="about-emoji">💻</span>I work mainly with <span className="about-highlight">React and Django</span> — combining front-end design with back-end logic to create apps that actually solve problems.
-    </p>
-    <p>
-      <span className="about-emoji">🔧</span>I’ve worked on projects like e-commerce platforms, café management tools, and even an AI chatbot — not just to learn, but to challenge myself and see ideas come to life.
-    </p>
-    <p>
-      <span className="about-emoji">🎯</span>My favorite part of development is figuring things out — whether that’s fixing a bug at 2AM or finally getting a layout just right on mobile.
-    </p>
-    <p>
-      <span className="about-emoji">🌱</span>I’m still learning every day, and I’m always excited to collaborate with other developers, designers, and creative minds.
-    </p>
-    <p>
-  <span className="about-emoji">🤝</span>Open to new opportunities, collaborations, or just a quick hello. Don’t hesitate to reach out.
-</p>
-    </div>
+              <span className="about-emoji">👋</span>Hey! I'm <span className="about-highlight">Mazen</span>, a curious and self-driven developer who loves building things for the web.
+            </p>
+            <p>
+              <span className="about-emoji">💻</span>I work mainly with <span className="about-highlight">React and Django</span> — combining front-end design with back-end logic to create apps that actually solve problems.
+            </p>
+            <p>
+              <span className="about-emoji">🔧</span>I've worked on projects like e-commerce platforms, café management tools, and even an AI chatbot — not just to learn, but to challenge myself and see ideas come to life.
+            </p>
+            <p>
+              <span className="about-emoji">🎯</span>My favorite part of development is figuring things out — whether that's fixing a bug at 2AM or finally getting a layout just right on mobile.
+            </p>
+            <p>
+              <span className="about-emoji">🌱</span>I'm still learning every day, and I'm always excited to collaborate with other developers, designers, and creative minds.
+            </p>
+            <p>
+              <span className="about-emoji">🤝</span>Open to new opportunities, collaborations, or just a quick hello. Don't hesitate to reach out.
+            </p>
+          </div>
         </section>
+
         {/* SVG Wave Divider */}
         <div className="section-divider"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,0 C480,100 960,0 1440,100 L1440,100 L0,100 Z" fill="#f8f7fa" /></svg></div>
+
         {/* Skills Section */}
-        <section id="skills" className="section skills-section">
+        <section id="skills" className="section skills-section" style={{ position: "relative", overflow: "hidden" }}>
+          <SideParallaxCircle color="#43e97b" speed={-0.07} position="left" />
+          <SideParallaxCircle color="#764ba2" speed={0.11} position="right" />
           <div className="section-header">
             <span className="section-header-icon"><FaTools /></span>
             <h2>Skills</h2>
           </div>
-          <Parallax y={[-30, 30]}>
-            <div className="skills-grid">
-              {skills.map((skill, i) => (
-                <Parallax key={skill.name} y={[(i % 2 === 0) ? -20 : 20, (i % 2 === 0) ? 20 : -20]}>
-                  <div className="skill-card">
-                    <div className="skill-icon">{skill.icon}</div>
-                    <div className="skill-name">{skill.name}</div>
-                  </div>
-                </Parallax>
-              ))}
-            </div>
-          </Parallax>
+          <div className="skills-grid">
+            {skills.map((skill) => (
+              <div key={skill.name} className="skill-card">
+                <div className="skill-icon">{skill.icon}</div>
+                <div className="skill-name">{skill.name}</div>
+              </div>
+            ))}
+          </div>
         </section>
+
         {/* SVG Wave Divider */}
         <div className="section-divider"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,0 C480,100 960,0 1440,100 L1440,100 L0,100 Z" fill="#f5f5f5" /></svg></div>
+
         {/* Projects Section */}
-        <section id="projects" className="section projects-section">
+        <section id="projects" className="section projects-section" style={{ position: "relative", overflow: "visible" }}>
+          <SideParallaxCircle color="#ffdd59" speed={0.06} position="left" />
+          <SideParallaxCircle color="#38f9d7" speed={-0.09} position="right" />
           <div className="section-header">
             <span className="section-header-icon"><FaProjectDiagram /></span>
             <h2>Projects</h2>
           </div>
-          <Parallax y={[30, -30]}>
-            <div className="projects-grid">
-              {projects.map((p, i) => (
-                <Parallax key={p.title} y={[(i % 2 === 0) ? -15 : 15, (i % 2 === 0) ? 15 : -15]}>
-                  <a
-                    href={p.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-card"
-                  >
-                    <h3>{p.title}</h3>
-                    <p>{p.desc}</p>
-                  </a>
-                </Parallax>
-              ))}
-            </div>
-          </Parallax>
+          <div className="projects-grid">
+            {projects.map((p) => (
+              <a
+                key={p.title}
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-card"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                <h3>{p.title}</h3>
+                <p>{p.desc}</p>
+              </a>
+            ))}
+          </div>
         </section>
+
         {/* SVG Wave Divider */}
         <div className="section-divider"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,0 C480,100 960,0 1440,100 L1440,100 L0,100 Z" fill="#f8f7fa" /></svg></div>
+
         {/* Additional Skills Section */}
-        <section id="additional-skills" className="section skills-section">
+        <section id="additional-skills" className="section skills-section" style={{ position: "relative", overflow: "visible" }}>
+          <SideParallaxCircle color="#764ba2" speed={-0.05} position="left" />
+          <SideParallaxCircle color="#ff6a00" speed={0.09} position="right" />
           <div className="section-header">
             <span className="section-header-icon"><FaStar /></span>
             <h2>Additional Skills</h2>
           </div>
-          <Parallax y={[-20, 20]}>
-            <div className="skills-grid">
-              <div className="skill-card">
-                <div className="skill-icon"><FaDatabase /></div>
-                <div className="skill-name">PHP</div>
+          <div className="skills-grid">
+            {additionalSkills.map((skill) => (
+              <div key={skill.name} className="skill-card">
+                <div className="skill-icon">{skill.icon}</div>
+                <div className="skill-name">{skill.name}</div>
               </div>
-              <div className="skill-card">
-                <div className="skill-icon"><FaPython /></div>
-                <div className="skill-name">Data Science<br/>(NumPy, Pandas)</div>
-              </div>
-              <div className="skill-card">
-                <div className="skill-icon"><FaDatabase /></div>
-                <div className="skill-name">Anaconda</div>
-              </div>
-              <div className="skill-card">
-                <div className="skill-icon"><FaTools /></div>
-                <div className="skill-name">Figma</div>
-              </div>
-              <div className="skill-card">
-                <div className="skill-icon"><FaPhotoVideo /></div>
-                <div className="skill-name">Media Editing</div>
-              </div>
-            </div>
-          </Parallax>
+            ))}
+          </div>
         </section>
+
         {/* SVG Wave Divider */}
         <div className="section-divider"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,0 C480,100 960,0 1440,100 L1440,100 L0,100 Z" fill="#fff" /></svg></div>
+
         {/* Contact Section */}
-        <section id="contact" className="section contact-section">
+        <section id="contact" className="section contact-section" style={{ position: "relative", overflow: "visible" }}>
+          <SideParallaxCircle color="#38f9d7" speed={0.04} position="left" />
+          <SideParallaxCircle color="#764ba2" speed={-0.08} position="right" />
           <div className="section-header">
             <span className="section-header-icon"><FaEnvelope /></span>
             <h2>Contact</h2>
@@ -212,15 +259,13 @@ function App() {
               <a href="https://github.com/mazenabaza2005" className="contact-icon" target="_blank" rel="noopener noreferrer" title="GitHub">
                 <FaGithub /> github.com/mazenabaza2005
               </a>
-              <a href="https://www.linkedin.com/in/mazenabaza2005/" className="contact-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+              <a href="https://www.linkedin.com/in/mazen-abaza-a305a12a6/" className="contact-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn">
                 <FaLinkedin /> linkedin.com/in/mazenabaza2005
               </a>
             </div>
           </div>
         </section>
       </div>
-    </ParallaxProvider>
+    </>
   );
 }
-
-export default App;
