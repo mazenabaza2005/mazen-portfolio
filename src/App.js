@@ -90,24 +90,26 @@ function App() {
               <span className="section-header-icon"><FaUser /></span>
               <h2>About Me</h2>
             </div>
-            <h2 style={{display: 'none'}}><span className="about-emoji">👋</span>Hey, I'm <span className="about-highlight">Mazen</span></h2>
+            
             <p>
-              <span className="about-emoji">💻</span>
-              I'm a <span className="about-highlight">Full Stack Developer</span> who loves turning ideas into interactive, beautiful web experiences. Whether it's a sleek frontend in React or a robust backend in Django, I enjoy every step of the process.
-            </p>
-            <p>
-              <span className="about-emoji">🚀</span>
-              I thrive on <span className="about-highlight">learning new tech</span> and pushing my boundaries. From building e-commerce platforms to book review sites, I always aim for clean code and creative solutions.
-            </p>
-            <p>
-              <span className="about-emoji">🌈</span>
-              Beyond coding, I'm passionate about <span className="about-highlight">UI/UX design</span>, open source, and sharing knowledge. I love reading, reviewing books, and collaborating with other curious minds.
-            </p>
-            <p>
-              <span className="about-emoji">🤝</span>
-              Let's connect and create something amazing together!
-            </p>
-          </div>
+      <span className="about-emoji">👋</span>Hey! I'm <span className="about-highlight">Mazen</span>, a curious and self-driven developer who loves building things for the web.
+    </p>
+    <p>
+      <span className="about-emoji">💻</span>I work mainly with <span className="about-highlight">React and Django</span> — combining front-end design with back-end logic to create apps that actually solve problems.
+    </p>
+    <p>
+      <span className="about-emoji">🔧</span>I’ve worked on projects like e-commerce platforms, café management tools, and even an AI chatbot — not just to learn, but to challenge myself and see ideas come to life.
+    </p>
+    <p>
+      <span className="about-emoji">🎯</span>My favorite part of development is figuring things out — whether that’s fixing a bug at 2AM or finally getting a layout just right on mobile.
+    </p>
+    <p>
+      <span className="about-emoji">🌱</span>I’m still learning every day, and I’m always excited to collaborate with other developers, designers, and creative minds.
+    </p>
+    <p>
+  <span className="about-emoji">🤝</span>Open to new opportunities, collaborations, or just a quick hello. Don’t hesitate to reach out.
+</p>
+    </div>
         </section>
         {/* SVG Wave Divider */}
         <div className="section-divider"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,0 C480,100 960,0 1440,100 L1440,100 L0,100 Z" fill="#f8f7fa" /></svg></div>
