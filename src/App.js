@@ -53,7 +53,7 @@ const additionalSkills = [
   { icon: <FaPhotoVideo />, name: "Media Editing" },
 ];
 
-// Optimized ParallaxBox component
+// Optimized ParallaxBox component  (customed component)
 function ParallaxBox({ speed = 0.5, style = {}, children }) {
   const [offsetY, setOffsetY] = useState(0);
 
@@ -83,7 +83,7 @@ function ParallaxBox({ speed = 0.5, style = {}, children }) {
   );
 }
 
-// Side parallax circle component
+// Side parallax circle component (customed component)
 function SideParallaxCircle({ color, speed, position }) {
   return (
     <ParallaxBox
@@ -137,8 +137,8 @@ export default function App() {
 
         {/* About Section */}
         <section id="about" className="section about-section" style={{ position: "relative", overflow: "hidden" }}>
-          <SideParallaxCircle color="#764ba2" speed={0.08} position="left" />
-          <SideParallaxCircle color="#ff6a00" speed={-0.12} position="right" />
+          <SideParallaxCircle color="#764ba2" speed={0.14} position="left" />
+          <SideParallaxCircle color="#ff6a00" speed={-0.18} position="right" />
           <div className="about-card" style={{ position: "relative", zIndex: 1 }}>
             <div className="section-header">
               <span className="section-header-icon"><FaUser /></span>
@@ -170,8 +170,8 @@ export default function App() {
 
         {/* Skills Section */}
         <section id="skills" className="section skills-section" style={{ position: "relative", overflow: "hidden" }}>
-          <SideParallaxCircle color="#43e97b" speed={-0.07} position="left" />
-          <SideParallaxCircle color="#764ba2" speed={0.11} position="right" />
+          <SideParallaxCircle color="#43e97b" speed={-0.08} position="left" />
+          <SideParallaxCircle color="#764ba2" speed={0.12} position="right" />
           <div className="section-header">
             <span className="section-header-icon"><FaTools /></span>
             <h2>Skills</h2>
@@ -219,8 +219,8 @@ export default function App() {
 
         {/* Additional Skills Section */}
         <section id="additional-skills" className="section skills-section" style={{ position: "relative", overflow: "visible" }}>
-          <SideParallaxCircle color="#764ba2" speed={-0.05} position="left" />
-          <SideParallaxCircle color="#ff6a00" speed={0.09} position="right" />
+          <SideParallaxCircle color="#764ba2" speed={-0.07} position="left" />
+          <SideParallaxCircle color="#ff6a00" speed={0.11} position="right" />
           <div className="section-header">
             <span className="section-header-icon"><FaStar /></span>
             <h2>Additional Skills</h2>
@@ -240,8 +240,8 @@ export default function App() {
 
         {/* Contact Section */}
         <section id="contact" className="section contact-section" style={{ position: "relative", overflow: "visible" }}>
-          <SideParallaxCircle color="#38f9d7" speed={0.04} position="left" />
-          <SideParallaxCircle color="#764ba2" speed={-0.08} position="right" />
+          <SideParallaxCircle color="#38f9d7" speed={0.06} position="left" />
+          <SideParallaxCircle color="#764ba2" speed={-0.09} position="right" />
           <div className="section-header">
             <span className="section-header-icon"><FaEnvelope /></span>
             <h2>Contact</h2>
